@@ -1,12 +1,21 @@
-import React from "react";
-// import Counter from "./Counter";
+import React, { useState } from "react";
 import Info from "./Info";
 
 const App = () => {
-  return <Info />;
+  const [visible, setVisible] = useState(false);
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setVisible(!visible);
+        }}
+      >
+        {visible ? "숨기기" : "보이기"}
+      </button>
+      <hr />
+      {visible && <Info />}
+    </div>
+  );
 };
-
-// userState 함수는 하나의 상태 값만 관리 가능.
-// 따라서 관리해야할 상태가 여러 개라면 여러번 사용.
 
 export default App;
