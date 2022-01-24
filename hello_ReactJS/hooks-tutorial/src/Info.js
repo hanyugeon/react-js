@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useReducer } from "react";
+
+function reducer(state, action) {
+  return {
+    ...state,
+    [action.name]: action.value,
+  };
+}
 
 const Info = () => {
-  const [name, setName] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [state, dispatch] = useReducer(reducer, {
+    name: "",
+    nickname: "",
+  });
 
-  useEffect(() => {
-    console.log("effect");
-    return () => {
-      console.log("unmount");
-    };
-  }, []);
-  // 특정 값이 업데이트 될 떄만 실행하고 싶을 때 => 배열에 해당 값 넣어주기.
-  // 마운트될 때만 실행하고 싶을 때 => 두 번째 파라미터로 비어 있는 배열 넣어주기.
-
-  const onChangeName = (e) => {
-    setName(e.target.value);
-  };
-
-  const onChangeNickname = (e) => {
-    setNickname(e.target.value);
+  const { name, nickname } = state;
+  const onChange = (e) => {
+    dispatch(e.target);
   };
 
   return (
     <div>
       <div>
-        <input value={name} onChange={onChangeName} />
-        <input value={nickname} onChange={onChangeNickname} />
+        <input name="name" value={name} onChange={onChange} />
+        <input name="nickname" value={nickname} onChange={onChange} />
       </div>
       <div>
         <div>
