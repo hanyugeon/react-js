@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { MdAdd } from "react-icons/md";
 import "./TodoInsert.scss";
 
-const TodoInsert = () => {
+const TodoInsert = ({ onInsert }) => {
   const [value, setValue] = useState("");
 
   // useCallback Hook을 활용하여 추가하고 다시 입력 준비상태로.
@@ -10,8 +10,20 @@ const TodoInsert = () => {
     setValue(e.target.value);
   }, []);
 
+  const onSubmit = useCallback(
+    (e) => {
+      onInsert(value);
+      setValue(""); // value값 초기화
+
+      // submit 이벤트는 브라우저에서 새로고침을 발생시킴
+      // 따라서 이를 방지하기 위해 아래 함수를 호출
+      e.preventDefault();
+    },
+    [onInsert, value]
+  );
+
   return (
-    <form className="TodoInsert">
+    <form className="TodoInsert" onSubmit={onSubmit}>
       <input
         placeholder="할 일을 입력하세요"
         value={value}
