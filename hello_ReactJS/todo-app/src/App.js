@@ -41,10 +41,18 @@ const App = () => {
     [todos]
   );
 
+  const onRemove = useCallback(
+    (id) => {
+      setTodos(todos.filter((todo) => todo.id !== id));
+    },
+    [todos]
+  );
+
+  // todos를 TodoList.js의 props로 넘겨주기
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} /> {/* todos를 TodoList.js의 props로 넘겨주기*/}
+      <TodoList todos={todos} onRemove={onRemove} />
     </TodoTemplate>
   );
 };
