@@ -5,7 +5,10 @@ import About from "./pages/About";
 import Article from "./pages/Article";
 import Articles from "./pages/Articles";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 import Profile from "./Profile";
+import Login from "./pages/Login";
+import MyPage from "./pages/MyPage";
 
 const App = () => {
   return (
@@ -20,6 +23,9 @@ const App = () => {
           <Route path=":id" element={<Article />} />
         </Route>
         {/* <Route path="/articles/:id" element={<Article />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
