@@ -1,4 +1,4 @@
-# whatToDo
+# 리액트를 다루는 기술
 
 ## 22.04.23(토)
 
@@ -54,3 +54,17 @@
 - 반복되는 무언가가 보일때...
 
   > 어떻게 리펙토링 할까 고민하기! 참고: router-tutorial/src/pages/articles.js
+
+  ## 22.07.05(화)
+
+  - 외부 API를 연동하여 애플리케이션 만들기
+
+    > 기술 스택: NEXT.js, styled-components, axios
+
+  - promise
+
+    > 콜백 지옥 같은 코드가 형성되지 않게 ES6에 도입된 기능, reject를 통해 에러 발생시키기, resolve된 값은 .then을 통해 받아서 사용 가능
+
+  - async & await
+
+    > promiserk 도입되었지만 이를 좀 더 쉽게 작성할 수 있도록 도와주는 async & await가 도입되었다, 함수 앞부분에 async를 작성하고 함수 내부에서 promise 앞부분에 await 키워드를 작성하여 promise가 끝날때까지 기다리고 결과값을 특정 변수에 담을 수 있게 됨.
