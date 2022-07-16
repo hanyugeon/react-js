@@ -16,7 +16,7 @@ const NewsListBlock = styled.div`
   }
 `;
 
-const NewsList = () => {
+const NewsList = ({ category }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -25,23 +25,24 @@ const NewsList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        const query = category === 'all' ? '' : `&category=${category}`;
         const response = await axios.get(
-          'https://newsapi.org/v2/top-headlines?country=kr&apiKey=3edcc99df9374669ae00b95d292a02c6',
+          `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=3edcc99df9374669ae00b95d292a02c6`,
         );
 
         setArticles(response.data.articles);
-        console.log(response);
+        console.log(query);
       } catch(error) {
         console.error(error);
       }
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [category]);
 
-  // 대기 중일 때
+  // loading
   if (loading) {
-    return <NewsListBlock>대기중...</NewsListBlock>;
+    return <NewsListBlock>loading...</NewsListBlock>;
   }
 
   // 아직 article 값이 설정되지 않았을 때
